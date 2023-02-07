@@ -1,0 +1,18 @@
+{
+    "name": "nwidart/mapademesas",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\MapaDeMesas\\": ""
+        }
+    },
+    "require": {
+        "intervention/image": "^2.5"
+    }
+}
