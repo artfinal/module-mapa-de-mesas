@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-12">
                                 <h6>FILTROS</h6>
                                 <div class="row">
@@ -33,7 +33,7 @@
                                 <hr>
                             </div>
 
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
 
