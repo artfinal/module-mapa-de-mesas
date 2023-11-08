@@ -114,6 +114,7 @@
                                                     }
                                                     ?>
                                                     <div
+                                                            id="mesa-id-{{$mesa['mesa']['id']}}"
                                                             onclick="{{$functionReservar}}"
                                                             data-toggle="{{$popover}}"
                                                             data-title="{{$popover_title}}"
@@ -233,6 +234,40 @@
                     })
                 }
             })
+        }
+
+        function refresh(){
+            fetch(`apiescolher`,{
+                method: 'GET',
+            })
+            .then(res => res.json())
+            .then(data => {
+                renderMesas(data);
+                setTimeout(refresh, 20000);
+            })
+        }
+
+        setTimeout(refresh, 20000);
+
+        function renderMesas(mesas){
+            for(let m of mesas){
+                if(m.escolhida){
+                    const mesa = $("#mesa-id-"+m.mesa.id);
+                    mesa.attr('onclick', null);
+                    mesa.css('background-color', m.config.background_color);
+                    mesa.css('color', m.config.color);
+                    mesa.attr('data-toggle', "popover");
+                    let popover_title = '';
+                    let popover_content = '';
+                    for(let e of m.escolhas){
+                        popover_title+= `${e.nome} ${e.sobrenome} <br>`;
+                        popover_content+= `<img src="/${e.img}" style="width: 80px;">`;
+                    }
+                    console.log(popover_title, popover_content);
+                    mesa.attr('data-original-title', popover_title);
+                    mesa.attr('data-content', popover_content);
+                }
+            }
         }
     </script>
 

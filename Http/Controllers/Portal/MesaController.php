@@ -31,8 +31,7 @@ class MesaController extends Controller
 
         $forming = auth()->user()->userable;
         $dataMapa = MapaServices::dadosFormandoMapa($forming, $produto, $mapa);
-        
-        
+
         if($dataMapa['disponivel'] <= 0){
             $resp = [
                 'success' => false,

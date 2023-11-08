@@ -49,5 +49,13 @@ class MapaController extends Controller
         return view('mapademesas::portal.mapa-escolher.index', compact('dataMapa', 'mesas', 'formandoTotalMesas'));
     }
 
+    public function apiEscolher(Mapas $mapa, FormandoProdutosEServicos $produto)
+    {
+        $forming = auth()->user()->userable;
+        $mesas = MapaServices::dadosMesasApi($mapa);
+
+        return $mesas;
+    }
+
 
 }

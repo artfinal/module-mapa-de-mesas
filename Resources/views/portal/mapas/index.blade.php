@@ -39,6 +39,9 @@
                                             <span style="font-size: 50px"><i class="icmn-map3"></i></span>
                                         </div>
                                         <div class="col-md-7" style="font-size: 16px;">
+
+                                            <span><b>Nome:</b> {{auth()->user()->userable->nome}} {{auth()->user()->userable->sobrenome}}</span><br>
+                                            <span><b>Curso:</b> {{auth()->user()->userable->course->name}}</span><br>
                                             <span><b>Descrição do Evento:</b> {{$mesa['event']['description']}}</span><br>
                                             <span><b>Produto:</b> {{$mesa['product']['name']}} [#{{$mesa['product']['id']}}]</span><br>
                                             <span><b>Local:</b> {{$mesa['event']['address']}}</span><br>

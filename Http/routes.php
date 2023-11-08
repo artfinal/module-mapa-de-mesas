@@ -53,6 +53,7 @@ Route::group(['middleware' => ['web','auth'], 'prefix' => 'mapademesas', 'as'=>'
     {
         Route::get('mapas', 'MapaController@index')->name('mapas.index');
         Route::get('mapa/{mapa}/produto/{produto}/escolher', 'MapaController@escolher')->name('mapa.escolher');
+        Route::get('mapa/{mapa}/produto/{produto}/apiescolher', 'MapaController@apiEscolher')->name('mapa.apiescolher');
 
         Route::post('mapa/{mapa}/produto/{produto}/escolher/mesa/{mesa}', 'MesaController@escolher')->name('mapa.escolher.mesa');
 

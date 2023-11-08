@@ -175,6 +175,53 @@ class MapaServices
         return $dataMesas;
     }
 
+    public static function dadosMesasApi(Mapas $mapa)
+    {
+        $dataMesas = [];
+        $mesas = Mesa::with(['escolhas', 'config'])->where('mapa_id', $mapa->id)->orderBy('numero')->get();
+        foreach ($mesas as $mesa){
+
+            // Escolhas
+            $escolhida = false;
+            $formandosEscolheu = [];
+            if(count($mesa->escolhas) > 0){
+                foreach ($mesa->escolhas as $escolha){
+                    if($escolha->cancelado == 1) continue;
+                    $escolhida = true;
+                    $forming = $escolha->forming;
+                    $formandosEscolheu[] = [
+                        'nome' => $forming->nome,
+                        'sobrenome' => $forming->sobrenome,
+                        'img' => $forming->img
+                    ];
+                }
+            }
+
+            if($escolhida){
+                $config['background_color'] = $mesa->config->background_color_ocupada;
+                $config['color'] = $mesa->config->color_ocupada;
+            }elseif($mesa->bloqueada){
+                $config['background_color'] = $mesa->config->background_color_reversada;
+                $config['color'] = $mesa->config->color_reversada;
+            }else{
+                $config['background_color'] = $mesa->config->background_color_livre;
+                $config['color'] = $mesa->config->color_livre;
+            }
+
+
+            $dataMesas[] = [
+                'mesa' => [
+                    'id' => $mesa->id,
+                    'numero' => $mesa->numero,
+                ],
+                'escolhida' => $escolhida,
+                'config' => $config,
+                'escolhas' => $formandosEscolheu
+            ];
+        }
+        return $dataMesas;
+    }
+
     public static function verificaLiberacao(MapaLoteForming $mapaLoteForming = null)
     {
         if($mapaLoteForming){
