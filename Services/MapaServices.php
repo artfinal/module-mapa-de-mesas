@@ -32,7 +32,7 @@ class MapaServices
 
                     $event = Event::find($event);
                     if($event){
-                        $mapas = Mapas::active()->where('event_id', $event->id)->where('data_inicio', '<=', date('Y-m-d H:i:s'))->get();
+                        $mapas = Mapas::active()->where('event_id', $event->id)->where('data_inicio', '<=', date('Y-m-d H:i:s'))->where('data_fim', '>', date('Y-m-d H:i:s'))->get();
                         if(count($mapas) > 0){
                             foreach ($mapas as $mapa){
 
