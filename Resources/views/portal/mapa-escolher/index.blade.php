@@ -243,11 +243,11 @@
             .then(res => res.json())
             .then(data => {
                 renderMesas(data);
-                setTimeout(refresh, 20000);
+                setTimeout(refresh, {{getenv('MAPADEMESAS_REFRESH_ESCOLHAS', 20000)}});
             })
         }
 
-        setTimeout(refresh, 20000);
+        setTimeout(refresh, {{getenv('MAPADEMESAS_REFRESH_ESCOLHAS', 20000)}});
 
         function renderMesas(mesas){
             for(let m of mesas){
